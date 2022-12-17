@@ -8,7 +8,7 @@
 -/users
     - /me
     - /:id
-    - /:id/add-friend
+    - /:id/follow
 
 -/posts
     - /me
@@ -17,7 +17,10 @@
     - /:id/comments
     - /:id/likes
     
--/friends
+-/follows
+    - /:id
+
+-/followers
     - /:id
 
 
