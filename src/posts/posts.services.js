@@ -67,6 +67,24 @@ const patchPost = (req, res) => {
 
 const deletePost = (req, res) => {
   const id = req.params.id;
-  const userId = req.user.id;
-  postControllers.deletePost(id, userId);
+  postControllers
+    .removePost(id)
+    .then((data) => {
+      if (data) {
+        res.status(204).json();
+      } else {
+        res.status(404).json({ message: 'Invalid ID' });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json({ message: err.message });
+    });
+};
+
+module.exports = {
+  getAllPosts,
+  getPostById,
+  postNewPost,
+  patchPost,
+  deletePost,
 };

@@ -35,7 +35,7 @@ const updatePost = async (id, userId, obj) => {
   return data[0];
 };
 
-const deletePost = async (id, userId) => {
+const removePost = async (id, userId) => {
   const data = await Posts.destroy({
     where: {
       id: id,
@@ -50,5 +50,5 @@ module.exports = {
   findPostById,
   createPost,
   updatePost,
-  deletePost,
+  removePost,
 };
