@@ -40,7 +40,8 @@ const postLogin = (req, res) => {
 const postRecoveryToken = (req, res) => {
 
     const { email } = req.body
-    authControllers.createRecoveryToken(email)
+    if(email){
+        authControllers.createRecoveryToken(email)
         .then((data) => {
             if(data){
                 mailer.sendMail({
@@ -50,12 +51,16 @@ const postRecoveryToken = (req, res) => {
                     html: `<a href='${config.api.host}/api/v1/auth/recovery-password/${data.id}'>${config.api.host}/api/v1/auth/recovery-password/${data.id}</a>`
                 })
             }
-            res.status(200).json({message: 'Email sended!, Check your inbox'})
+            res.status(200).json({message: 'Email sent!, Check your inbox'})
         })
         .catch((err) => {
             res.status(400).json({message: err.message})
         })
+    } else {
+        res.status(400).json({message: 'Invalid Data', fields: {email: 'example@example.com'}})
+    }
 }
+
 
 const patchPassword = (req, res) => {
     const id = req.params.id
