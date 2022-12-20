@@ -40,8 +40,8 @@ const getMyUser = (req, res) => {
 
 
 const postUser = (req, res) => {
-    const {firstName, lastName, email, password, gender, birthday} = req.body
-    userControllers.createUser({firstName, lastName, email, password,gender, birthday})
+    const {firstName, lastName, email, password, gender, birthday, nickName} = req.body
+    userControllers.createUser({firstName, lastName, email, password,gender, birthday, nickName })
         .then(async(data) => {
             await mailer.sendMail({
                 from: '<estefaniasalazar093@gmail.com>',
@@ -60,7 +60,8 @@ const postUser = (req, res) => {
                 email: 'example@example.com',
                 password: 'String',
                 gender: 'String',
-                birthday: 'YYYY/MM/DD'
+                birthday: 'YYYY/MM/DD',
+                nickName: 'String'
             }})
         })
 }
