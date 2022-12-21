@@ -1,5 +1,5 @@
 const Likes = require('../models/likes.models');
-const Users = require('../models/users.models')
+const Users = require('../models/users.models');
 const uuid = require('uuid');
 
 const findAllLikesFromPost = async (postId) => {
@@ -9,10 +9,10 @@ const findAllLikesFromPost = async (postId) => {
     },
     include: {
       model: Users,
-      attributes: ['id', 'firstName', 'lastName']
-    }
+      attributes: ['id', 'firstName', 'lastName'],
+    },
   });
-  return data.map(like => like.user);
+  return data.map((like) => like.user);
 };
 
 const createLike = async (obj) => {
@@ -23,7 +23,12 @@ const createLike = async (obj) => {
     },
   });
   if (validate) {
-    return null;
+    const value = await Likes.destroy({
+      where: {
+        id: validate.id,
+      },
+    });
+    return value;
   }
   const data = await Likes.create({
     id: uuid.v4(),
