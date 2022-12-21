@@ -25,5 +25,5 @@
 - [x] getAllPosts
 - [x] getPostById
 - [x] postNewPost
-- [] patchPost
-- [] deletePost
+- [x] patchPost
+- [x] deletePost

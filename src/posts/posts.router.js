@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const postServices = require('./posts.services');
+const likeServices = require('../likes/likes.services')
 const passportJWT = require('../middlewares/auth.middleware');
 
 router
@@ -22,5 +23,10 @@ router
     passportJWT.authenticate('jwt', { session: false }),
     postServices.deletePost
   );
+
+router.route('/:id/likes')
+    .get(likeServices.getAllLikesByPost)
+    .post(passportJWT.authenticate('jwt', { session: false }),
+    likeServices.postLike)
 
 module.exports = router;

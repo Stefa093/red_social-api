@@ -26,10 +26,13 @@ const postLike = (req, res) => {
     .createLike({ userId, postId })
     .then((data) => {
       if (data) {
-        res.status(200).json(data);
+        res.status(201).json({
+          count: data.length,
+          users: data
+        });
       } else {
         res.status(404).json({
-          message: 'Invalid ID',
+          message: 'You already liked this post',
         });
       }
     })
