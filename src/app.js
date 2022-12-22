@@ -9,7 +9,7 @@ const initModels = require('./models/initModels');
 const userRouter = require('./users/users.router');
 const authRouter = require('./auth/auth.router');
 const postRouter = require('./posts/posts.router');
-const followRouter = require('.follows/follows.router');
+const followRouter = require('./follows/follows.router');
 
 //? Initial Configs
 
