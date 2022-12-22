@@ -29,7 +29,14 @@ const Follows = db.define('follows', {
             model: Users
         }
         
-    }
+    }, //{
+        //? Validacion para evitar seguir a una persona 2 veces
+        // uniqueKeys: {
+        //     follows_unique: {
+        //         fields: ['userId', 'userId2']
+        //     }
+        //}
+    
 })
 
 module.exports = Follows
