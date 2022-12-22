@@ -22,7 +22,7 @@ const initModels = () => {
   Users.hasMany(Follows)
     Follows.belongsTo(Users, {
         as: "following",
-        foreignKey: "userId2"
+        foreignKey: "userId1"
     })
     
     Follows.belongsTo(Users, {
